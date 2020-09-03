@@ -1,4 +1,4 @@
-;;; doom-ayu-dark-theme.el --- inspired by Atom City Lights -*- no-byte-compile: t; -*-
+;;; doom-ayu-dark-theme.el -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
@@ -30,7 +30,7 @@ determine the exact padding."
 
 ;;
 (def-doom-theme doom-ayu-dark
-  "A dark theme inspired by Atom City Lights"
+  "A dark theme in ayu"
 
   ;; name        default   256       16
   ((bg         '("#0a0e14" nil       nil            ))
