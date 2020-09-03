@@ -1,4 +1,4 @@
 (require 'org)
 (org-babel-load-file
-(expand-file-name "emacs-init.org"
+(expand-file-name "MasterCsquare.org"
 		   user-emacs-directory))
