@@ -252,6 +252,8 @@
     (define-key menu-key-map (kbd "1") 'delete-other-windows)
     (define-key menu-key-map (kbd "2") 'split-window-below)
     (define-key menu-key-map (kbd "3") 'split-window-right)
+    (define-key menu-key-map (kbd "8") 'org-edit-special)
+    (define-key menu-key-map (kbd "9") 'org-edit-src-exit)
     (define-key menu-key-map (kbd "[") 'winner-undo)
     (define-key menu-key-map (kbd "]") 'winner-redo)
     (define-key menu-key-map (kbd "m") 'helm-filtered-bookmarks)
