@@ -189,6 +189,7 @@ determine the exact padding."
 
    ;; helm
    (helm-selection :foreground bg :background blue)
+   (helm-ff-file-extension :foreground magenta)
    )
 
   ;; --- extra variables ---------------------
