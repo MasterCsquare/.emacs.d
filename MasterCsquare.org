@@ -45,6 +45,9 @@
     (put 'downcase-region 'disabled nil)
     (put 'upcase-region 'disabled nil)
 
+    (add-to-list 'custom-theme-load-path
+		 (expand-file-name user-emacs-directory))
+
     (when (fboundp 'winner-mode)
       (winner-mode 1))
 
@@ -70,7 +73,6 @@
     (require 'use-package)
     (setq use-package-verbose t)
     (setq use-package-always-ensure t)
-
   #+end_src
 * advance
   #+begin_src emacs-lisp
@@ -89,7 +91,7 @@
 
     (use-package doom-themes
       :config
-      (load-theme 'doom-city-lights t)
+      (load-theme 'doom-ayu-dark t)
       (doom-themes-org-config))
 
     (use-package doom-modeline
