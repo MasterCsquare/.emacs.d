@@ -1,0 +1,5 @@
+*
+!.gitignore
+!init.el
+!emacs-init.org
+!banner.org
