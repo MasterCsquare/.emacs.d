@@ -67,7 +67,7 @@ determine the exact padding."
    (builtin        blue)
    (comments       (if doom-ayu-dark-brighter-comments dark-cyan grey))
    (doc-comments   (doom-lighten (if doom-ayu-dark-brighter-comments dark-cyan grey) 0.25))
-   (constants      cyan)
+   (constants      yellow)
    (functions      orange)
    (keywords       magenta)
    (methods        orange)
