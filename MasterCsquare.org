@@ -159,9 +159,9 @@
     (use-package helm
       :config
       (helm-mode 1)
-      (setq helm-autoresize-min-height 35)
-      (setq helm-autoresize-max-height 35)
-      (helm-autoresize-mode)
+      (setq helm-autoresize-min-height 20)
+      (setq helm-autoresize-max-height 50)
+      (helm-autoresize-mode 1)
       :bind (("M-x" . helm-M-x)
 	     ("C-x C-f" . helm-find-files)
 	     ("C-x r b" . helm-filtered-bookmarks)))
