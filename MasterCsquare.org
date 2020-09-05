@@ -248,6 +248,7 @@
     (define-key menu-key-map (kbd "b") 'mark-whole-buffer)
     (define-key menu-key-map (kbd "w") 'ace-window)
     (define-key menu-key-map (kbd "e") 'helm-find-files)
+    (define-key menu-key-map (kbd "a") 'helm-ag)
     (define-key menu-key-map (kbd "0") 'delete-window)
     (define-key menu-key-map (kbd "1") 'delete-other-windows)
     (define-key menu-key-map (kbd "2") 'split-window-below)
