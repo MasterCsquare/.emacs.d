@@ -1,3 +1,15 @@
+* table of contents                                                     :TOC:
+- [[#basic-configuration][basic configuration]]
+- [[#user-interface][user interface]]
+- [[#key-bindings][key bindings]]
+- [[#visual][visual]]
+- [[#navigation][navigation]]
+- [[#editing][editing]]
+- [[#programming][programming]]
+- [[#operating-system][operating system]]
+- [[#org-mode][org mode]]
+- [[#menu-keys][menu keys]]
+
 * basic configuration
   A bigger garbage collect threshold can make emacs boot faster,
   mostly prevent it to become a weakness.
@@ -203,6 +215,14 @@
 
     (use-package god-mode :bind ("<escape>" . god-loccal-mode))
   #+end_src
+* visual
+  #+begin_src emacs-lisp
+    (use-package pangu-spacing
+      :hook  (org-mode . pangu-spacing-mode))
+
+    (use-package nameless
+      :commands nameless-mode)
+  #+end_src
 * navigation
   #+begin_src emacs-lisp
     (use-package helm-swoop
@@ -213,6 +233,10 @@
     (use-package avy :commands avy-goto-char-timer)
 
     (use-package ace-link :config (ace-link-setup-default))
+
+    (use-package goto-line-preview
+      :config
+      (global-set-key [remap goto-line] 'goto-line-preview))
   #+end_src
 * editing
   #+begin_src emacs-lisp
@@ -227,6 +251,8 @@
       :bind
       (("M-p" . move-text-up)
        ("M-n" . move-text-down)))
+
+    (use-package wgrep :defer t)
   #+end_src
 * programming
   #+begin_src emacs-lisp
@@ -237,6 +263,8 @@
 
     (use-package helm-projectile
       :config (helm-projectile-on))
+
+    (use-package hl-todo :hook (prog-mode . hl-todo-mode))
 
     (use-package helm-ag :defer t)
 
@@ -265,11 +293,13 @@
     (use-package rainbow-delimiters
       :hook (prog-mode . rainbow-delimiters-mode))
 
+    (use-package highlight-numbers
+      :hook (prog-mode . highlight-numbers-mode))
+
     (use-package lispy
       :hook
       (emacs-lisp-mode . lispy-mode)
       (lisp-mode . lispy-mode))
-
 
     (use-package magit
       :bind ("C-x g" . magit))
@@ -283,6 +313,11 @@
     (use-package git-messenger
       :commands git-messenger:popup-message)
 
+    (use-package gitconfig-mode)
+
+    (use-package gitattributes-mode)
+
+    (use-package gitignore-mode)
 
     (use-package sly :commands sly
       :config (setq inferior-lisp-program "/usr/bin/sbcl"))
@@ -304,6 +339,8 @@
 
     (use-package rust-mode :mode "\\.rs\\'")
 
+    (use-package php-mode :mode "\\.php\\'")
+
     (use-package lua-mode :mode "\\.lua\\'")
 
     (use-package json-mode :mode "\\.json\\'")
@@ -317,6 +354,36 @@
     (use-package rime
       :custom
       (default-input-method "rime"))
+
+    (use-package esh-autosuggest
+      :hook (eshell-mode . esh-autosuggest-mode))
+
+    (use-package restart-emacs
+      :commands restart-emacs)
+
+    (use-package google-this
+      :config
+      (google-this-mode 1))
+
+    (use-package pdf-tools
+      :config
+      (pdf-tools-install))
+
+    (use-package tex
+      :defer t
+      :ensure auctex
+      :config
+      (setq TeX-auto-save t))
+
+    (use-package esup
+      :commands esup)
+  #+end_src
+* org mode
+  #+begin_src emacs-lisp
+    (use-package toc-org
+      :config
+      (if (require 'toc-org nil t)
+	(add-hook 'org-mode-hook 'toc-org-mode)))
   #+end_src
 * menu keys
   The menu key is very useful. I bind it with so many commands, which
