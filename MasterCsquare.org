@@ -1,62 +1,130 @@
-* basic
+* basic configuration
+  A bigger garbage collect threshold can make emacs boot faster,
+  mostly prevent it to become a weakness.
   #+begin_src emacs-lisp
     (setq gc-cons-threshold 100000000)
+  #+end_src
 
+  Turnoff all of these things to make emacs become pretty and
+  cool. Lacking of theses have none affect on a pure keyboard driven
+  user.
+  #+begin_src emacs-lisp
     (tool-bar-mode -1)
     (menu-bar-mode -1)
     (blink-cursor-mode -1)
     (scroll-bar-mode -1)
+  #+end_src
 
+  The initial startup screen will be replace by dashboard.
+  #+begin_src emacs-lisp
     (setq inhibit-startup-screen t)
+  #+end_src
 
+  If not config this, you will get origin emacs scrolling, which is
+  scroll by once time per 50 lines.
+  #+begin_src emacs-lisp
     (setq scroll-margin 0
 	  scroll-conservatively 100000
 	  scroll-preserve-screen-position 1)
+  #+end_src
 
+  Connect emacs with X11 clipboard. Without this, it will be messy.
+  #+begin_src emacs-lisp
     (setq x-select-enable-clipboard t)
+  #+end_src
 
+  Turnoff backup and auto save, which is useless after VC take over
+  the job.
+  #+begin_src emacs-lisp
     (setq make-backup-files nil)
     (setq auto-save-default nil)
+  #+end_src
 
-    (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  Set the custom file path. The file is annoying if you not move it to
+  somewhere.
+  #+begin_src emacs-lisp
+    (setq custom-file
+	  (expand-file-name "custom.el" user-emacs-directory))
+  #+end_src
 
+  Now you can set it's tab or space by the cursor.
+  #+begin_src emacs-lisp
     (setq x-stretch-cursor t)
+  #+end_src
 
+  Basic setups for modeline.
+  #+begin_src emacs-lisp
     (line-number-mode t)
     (column-number-mode t)
     (size-indication-mode t)
+  #+end_src
 
+  Input character When selection is active to delete the selection.
+  #+begin_src emacs-lisp
     (delete-selection-mode 1)
+  #+end_src
 
+  A general and basic support for pair.
+  #+begin_src emacs-lisp
     (electric-pair-mode 1)
     (show-paren-mode 1)
     (setq show-paren-style 'parenthesis)
+  #+end_src
 
+  Delete trailing whitespaces when save the file.
+  #+begin_src emacs-lisp
     (add-hook 'before-save-hook 'delete-trailing-whitespace)
+  #+end_src
 
-    (add-hook 'java-mode-hook 'subword-mode)
-    (add-hook 'go-mode-hook 'subword-mode)
-
+  On the fly spell checking. the flyspell-prog-mode only check
+  comments and strings.
+  #+begin_src emacs-lisp
     (add-hook 'text-mode-hook 'flyspell-mode)
     (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+  #+end_src
 
+  Subword-mode makes moving actions obey camel case rules.
+  #+begin_src emacs-lisp
+    (add-hook 'java-mode-hook 'subword-mode)
+    (add-hook 'go-mode-hook 'subword-mode)
+  #+end_src
+
+  Answer the exit question by one letter.
+  #+begin_src emacs-lisp
     (fset 'yes-or-no-p 'y-or-n-p)
+  #+end_src
 
+  Emacs disable some features by default, you have to enable the
+  disable.
+  #+begin_src emacs-lisp
     (put 'downcase-region 'disabled nil)
     (put 'upcase-region 'disabled nil)
+  #+end_src
 
+  Add a path to emacs theme load path for loading my custom theme.
+  #+begin_src emacs-lisp
     (add-to-list 'custom-theme-load-path
 		 (expand-file-name user-emacs-directory))
+  #+end_src
 
+  Activate the winner mode. Winner mode can undo and redo the windows
+  layout.
+  #+begin_src emacs-lisp
     (when (fboundp 'winner-mode)
       (winner-mode 1))
+  #+end_src
 
+  Set the default font to Fira, default CJK font to Wenquanyi Zen hei.
+  #+begin_src emacs-lisp
     (set-face-attribute 'default nil :font "Fira Code 11")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
-			(font-spec :family "WenQuanYi Zen " :size 16)))
+			(font-spec :family "WenQuanYi Zen Hei" :size 16)))
+  #+end_src
 
+  Enable package manager and install use-package.
+  #+begin_src emacs-lisp
     (setq package-archives
 	  '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 	    ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
@@ -74,7 +142,7 @@
     (setq use-package-verbose t)
     (setq use-package-always-ensure t)
   #+end_src
-* advance
+* user interface
   #+begin_src emacs-lisp
     (use-package helm
       :config
@@ -86,9 +154,6 @@
 	     ("C-x C-f" . helm-find-files)
 	     ("C-x r b" . helm-filtered-bookmarks)))
 
-    (use-package helm-swoop
-      :bind ("C-s" . helm-swoop))
-
     (use-package doom-themes
       :config
       (load-theme 'doom-ayu-dark t)
@@ -97,6 +162,74 @@
     (use-package doom-modeline
       :init (doom-modeline-mode 1))
 
+    (use-package helpful
+      :bind (("C-h f" . helpful-callable)
+	     ("C-h v" . helpful-variable)
+	     ("C-h k" . helpful-key)))
+
+    (use-package which-key
+      :config (which-key-mode))
+
+    (use-package dashboard
+      :config
+      (setq dashboard-startup-banner (expand-file-name "banner.png" user-emacs-directory))
+      (dashboard-setup-startup-hook))
+
+    (use-package rainbow-mode :commands rainbow-mode)
+
+    (use-package undo-tree
+      :config (global-undo-tree-mode))
+
+    (use-package diff-hl
+      :config (global-diff-hl-mode))
+
+    (use-package eyebrowse
+      :config (eyebrowse-mode t))
+
+    (use-package volatile-highlights
+      :config (volatile-highlights-mode t))
+
+    (use-package org-bullets
+      :config (setq org-bullets-bullet-list '("λ" "μ" "ν" "ξ" ))
+      :hook (org-mode . (lambda () (org-bullets-mode 1))))
+
+    (use-package dired+)
+
+    (use-package info+)
+  #+end_src
+* key bindings
+  #+begin_src emacs-lisp
+    (use-package hydra)
+
+    (use-package god-mode :bind ("<escape>" . god-loccal-mode))
+  #+end_src
+* navigation
+  #+begin_src emacs-lisp
+    (use-package helm-swoop
+      :bind ("C-s" . helm-swoop))
+
+    (use-package ace-window :commands ace-window)
+
+    (use-package avy :commands avy-goto-char-timer)
+
+    (use-package ace-link :config (ace-link-setup-default))
+  #+end_src
+* editing
+  #+begin_src emacs-lisp
+    (use-package multiple-cursors
+      :bind (("C->" . mc/mark-next-like-this)
+	     ("C-<" . mc/mark-previous-like-this)))
+
+    (use-package expand-region
+      :bind ("C-=" . er/expand-region))
+
+    (use-package move-text
+      :bind
+      (("M-p" . move-text-up)
+       ("M-n" . move-text-down)))
+  #+end_src
+* programming
+  #+begin_src emacs-lisp
     (use-package projectile
       :config
       (projectile-mode +1)
@@ -132,29 +265,11 @@
     (use-package rainbow-delimiters
       :hook (prog-mode . rainbow-delimiters-mode))
 
-    (use-package helpful
-      :bind (("C-h f" . helpful-callable)
-	     ("C-h v" . helpful-variable)
-	     ("C-h k" . helpful-key)))
-
-    (use-package which-key
-      :config (which-key-mode))
-
     (use-package lispy
       :hook
       (emacs-lisp-mode . lispy-mode)
       (lisp-mode . lispy-mode))
 
-    (use-package hydra)
-
-    (use-package god-mode :bind ("<escape>" . god-loccal-mode))
-
-    (use-package multiple-cursors
-      :bind (("C->" . mc/mark-next-like-this)
-	     ("C-<" . mc/mark-previous-like-this)))
-
-    (use-package expand-region
-       :bind ("C-=" . er/expand-region))
 
     (use-package magit
       :bind ("C-x g" . magit))
@@ -168,40 +283,11 @@
     (use-package git-messenger
       :commands git-messenger:popup-message)
 
-    (use-package dashboard
-      :config
-      (setq dashboard-startup-banner (expand-file-name "banner.png" user-emacs-directory))
-      (dashboard-setup-startup-hook))
-
-    (use-package rainbow-mode :commands rainbow-mode)
-
-    (use-package undo-tree
-      :config (global-undo-tree-mode))
-
-    (use-package diff-hl
-      :config (global-diff-hl-mode))
-
-    (use-package eyebrowse
-      :config (eyebrowse-mode t))
 
     (use-package sly :commands sly
       :config (setq inferior-lisp-program "/usr/bin/sbcl"))
 
     (use-package geiser :commands geiser)
-
-    (use-package ace-window :commands ace-window)
-
-    (use-package avy :commands avy-goto-char-timer)
-
-    (use-package ace-link :config (ace-link-setup-default))
-
-    (use-package volatile-highlights
-      :config (volatile-highlights-mode t))
-
-    (use-package move-text
-      :bind
-      (("M-p" . move-text-up)
-       ("M-n" . move-text-down)))
 
     (use-package web-mode :mode "\\.html\\'")
 
@@ -223,21 +309,19 @@
     (use-package json-mode :mode "\\.json\\'")
 
     (use-package markdown-mode :mode "\\.md\\'")
-
-    (use-package org-bullets
-      :config (setq org-bullets-bullet-list '("λ" "μ" "ν" "ξ" ))
-      :hook (org-mode . (lambda () (org-bullets-mode 1))))
-
-    (use-package dired+)
-
-    (use-package info+)
-
+  #+end_src
+* operating system
+  #+begin_src emacs-lisp
     (use-package mingus :commands mingus)
 
     (use-package rime
       :custom
       (default-input-method "rime"))
-
+  #+end_src
+* menu keys
+  The menu key is very useful. I bind it with so many commands, which
+  are very frequently used.
+  #+begin_src emacs-lisp
     (define-prefix-command 'menu-key-map)
     (define-key menu-key-map (kbd "h") 'beginning-of-buffer)
     (define-key menu-key-map (kbd "n") 'end-of-buffer)
