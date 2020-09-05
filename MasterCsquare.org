@@ -409,6 +409,7 @@
     (define-key menu-key-map (kbd "[") 'winner-undo)
     (define-key menu-key-map (kbd "]") 'winner-redo)
     (define-key menu-key-map (kbd "m") 'helm-filtered-bookmarks)
+    (define-key menu-key-map (kbd "s") 'flyspell-auto-correct-word)
     (define-key menu-key-map (kbd "j") 'avy-goto-char-timer)
     (define-key menu-key-map (kbd "<menu>") 'helm-M-x)
     (define-key menu-key-map (kbd "SPC") 'magit)
