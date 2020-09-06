@@ -386,7 +386,7 @@
       (setq calendar-holidays
 	    (append cal-china-x-important-holidays
 		    cal-china-x-general-holidays
-		    other-holidays)))
+		    holiday-other-holidays)))
   #+end_src
 * org mode
   #+begin_src emacs-lisp
