@@ -202,8 +202,6 @@
       :config (setq org-bullets-bullet-list '("λ" "μ" "ν" "ξ" ))
       :hook (org-mode . (lambda () (org-bullets-mode 1))))
 
-    (use-package dired+)
-
     (use-package info+)
   #+end_src
 * key bindings
