@@ -402,7 +402,7 @@
     (define-key menu-key-map (kbd "k") 'kill-buffer)
     (define-key menu-key-map (kbd "b") 'mark-whole-buffer)
     (define-key menu-key-map (kbd "w") 'ace-window)
-    (define-key menu-key-map (kbd "e") 'counsel-find-files)
+    (define-key menu-key-map (kbd "e") 'counsel-find-file)
     (define-key menu-key-map (kbd "a") 'counsel-ag)
     (define-key menu-key-map (kbd "0") 'delete-window)
     (define-key menu-key-map (kbd "1") 'delete-other-windows)
