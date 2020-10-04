@@ -156,12 +156,15 @@
   #+end_src
 * user interface
   #+begin_src emacs-lisp
-    (use-package helm
+    (use-package swiper
       :config
-      (helm-mode 1)
-      :bind (("M-x" . helm-M-x)
-	     ("C-x C-f" . helm-find-files)
-	     ("C-x r b" . helm-filtered-bookmarks)))
+      (ivy-mode 1)
+      (counsel-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq enable-recursive-minibuffers t)
+      :bind (("C-s" . swiper)
+	     ("M-x" . counsel-M-x)
+	     ("C-x C-f" . counsel-find-file)))
 
     (use-package doom-themes
       :config
@@ -220,9 +223,6 @@
   #+end_src
 * navigation
   #+begin_src emacs-lisp
-    (use-package helm-swoop
-      :bind ("C-s" . helm-swoop))
-
     (use-package ace-window :commands ace-window)
 
     (use-package avy :commands avy-goto-char-timer)
@@ -256,12 +256,11 @@
       (projectile-mode +1)
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-    (use-package helm-projectile
-      :config (helm-projectile-on))
+    (use-package counsel-projectile
+      :config
+      (counsel-projectile-mode 1))
 
     (use-package hl-todo :hook (prog-mode . hl-todo-mode))
-
-    (use-package helm-ag :defer t)
 
     (use-package company
       :config
@@ -403,8 +402,8 @@
     (define-key menu-key-map (kbd "k") 'kill-buffer)
     (define-key menu-key-map (kbd "b") 'mark-whole-buffer)
     (define-key menu-key-map (kbd "w") 'ace-window)
-    (define-key menu-key-map (kbd "e") 'helm-find-files)
-    (define-key menu-key-map (kbd "a") 'helm-ag)
+    (define-key menu-key-map (kbd "e") 'counsel-find-files)
+    (define-key menu-key-map (kbd "a") 'counsel-ag)
     (define-key menu-key-map (kbd "0") 'delete-window)
     (define-key menu-key-map (kbd "1") 'delete-other-windows)
     (define-key menu-key-map (kbd "2") 'split-window-below)
@@ -413,10 +412,10 @@
     (define-key menu-key-map (kbd "9") 'org-edit-src-exit)
     (define-key menu-key-map (kbd "[") 'winner-undo)
     (define-key menu-key-map (kbd "]") 'winner-redo)
-    (define-key menu-key-map (kbd "m") 'helm-filtered-bookmarks)
+    (define-key menu-key-map (kbd "m") 'counsel-bookmark)
     (define-key menu-key-map (kbd "s") 'flyspell-auto-correct-word)
     (define-key menu-key-map (kbd "j") 'avy-goto-char-timer)
-    (define-key menu-key-map (kbd "<menu>") 'helm-M-x)
+    (define-key menu-key-map (kbd "<menu>") 'counsel-M-x)
     (define-key menu-key-map (kbd "SPC") 'magit)
     (define-key menu-key-map (kbd "p") 'projectile-command-map)
     (global-set-key (kbd "<menu>") 'menu-key-map)
