@@ -190,7 +190,8 @@
     (use-package rainbow-mode :commands rainbow-mode)
 
     (use-package undo-tree
-      :config (global-undo-tree-mode))
+      :config (global-undo-tree-mode)
+      :bind ("M-/" . undo-tree-redo))
 
     (use-package diff-hl
       :config (global-diff-hl-mode))
