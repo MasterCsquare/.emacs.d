@@ -166,6 +166,8 @@
 	     ("M-x" . counsel-M-x)
 	     ("C-x C-f" . counsel-find-file)))
 
+    (use-package smex)
+
     (use-package doom-themes
       :config
       (load-theme 'doom-ayu-dark t)
