@@ -385,6 +385,10 @@
 	    (append cal-china-x-important-holidays
 		    cal-china-x-general-holidays
 		    holiday-other-holidays)))
+
+    (use-package nov-mode
+      :ensure nov
+      :mode "\\.epub\\'")
   #+end_src
 * org mode
   #+begin_src emacs-lisp
