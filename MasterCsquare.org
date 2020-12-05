@@ -59,7 +59,7 @@
 	  (expand-file-name "custom.el" user-emacs-directory))
   #+end_src
 
-  Now you can set it's tab or space by the cursor.
+  Now you can see it's tab or space by the cursor.
   #+begin_src emacs-lisp
     (setq x-stretch-cursor t)
   #+end_src
