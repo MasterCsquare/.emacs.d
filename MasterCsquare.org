@@ -162,7 +162,7 @@
       (counsel-mode 1)
       (setq ivy-use-virtual-buffers t)
       (setq enable-recursive-minibuffers t)
-      (setq ivy-height 13)
+      (setq ivy-height 15)
       :bind (("C-s" . swiper)
 	     ("M-x" . counsel-M-x)
 	     ("C-x C-f" . counsel-find-file)))
