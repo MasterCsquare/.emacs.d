@@ -132,7 +132,7 @@
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
-			(font-spec :family "WenQuanYi Zen Hei" :size 16)))
+			(font-spec :family "WenQuanYi Zen Hei" :size 18)))
   #+end_src
 
   Enable package manager and install use-package.
