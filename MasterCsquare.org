@@ -156,18 +156,36 @@
   #+end_src
 * user interface
   #+begin_src emacs-lisp
-    (use-package swiper
+    (use-package selectrum
       :config
-      (ivy-mode 1)
-      (counsel-mode 1)
-      (setq ivy-use-virtual-buffers t)
-      (setq enable-recursive-minibuffers t)
-      (setq ivy-height 15)
-      :bind (("C-s" . swiper)
-	     ("M-x" . counsel-M-x)
-	     ("C-x C-f" . counsel-find-file)))
+      (selectrum-mode +1)
+      (setq selectrum-num-candidates-displayed 15))
 
-    (use-package smex)
+    (use-package selectrum-prescient
+      :config
+      (selectrum-prescient-mode +1)
+      (prescient-persist-mode +1))
+
+    (use-package ctrlf
+      :config
+      (ctrlf-mode +1))
+
+    (use-package consult
+      :bind
+      (("C-c o" . consult-outline)
+       ("C-x b" . consult-buffer)
+       ("C-x 4 b" . consult-buffer-other-window)
+       ("C-x 5 b" . consult-buffer-other-frame)
+       ("C-x r x" . consult-register)
+       ("C-x r b" . consult-bookmark)
+       ("M-y" . consult-yank-pop)
+       ("<help> a" . consult-apropos)))
+
+    (use-package consult-selectrum)
+
+    (use-package marginalia
+      :init
+      (marginalia-mode))
 
     (use-package doom-themes
       :config
@@ -259,10 +277,6 @@
       :config
       (projectile-mode +1)
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-
-    (use-package counsel-projectile
-      :config
-      (counsel-projectile-mode 1))
 
     (use-package hl-todo :hook (prog-mode . hl-todo-mode))
 
@@ -405,14 +419,13 @@
     (define-key menu-key-map (kbd "h") 'beginning-of-buffer)
     (define-key menu-key-map (kbd "n") 'end-of-buffer)
     (define-key menu-key-map (kbd "o") 'mode-line-other-buffer)
-    (define-key menu-key-map (kbd "f") 'switch-to-buffer)
+    (define-key menu-key-map (kbd "f") 'consult-buffer)
     (define-key menu-key-map (kbd ";") 'save-buffer)
     (define-key menu-key-map (kbd "k") 'kill-buffer)
     (define-key menu-key-map (kbd "b") 'mark-whole-buffer)
     (define-key menu-key-map (kbd "w") 'ace-window)
-    (define-key menu-key-map (kbd "e") 'counsel-find-file)
-    (define-key menu-key-map (kbd "r") 'counsel-recentf)
-    (define-key menu-key-map (kbd "a") 'counsel-ag)
+    (define-key menu-key-map (kbd "e") 'find-file)
+    (define-key menu-key-map (kbd "r") 'consult-recent-file)
     (define-key menu-key-map (kbd "0") 'delete-window)
     (define-key menu-key-map (kbd "1") 'delete-other-windows)
     (define-key menu-key-map (kbd "2") 'split-window-below)
@@ -421,10 +434,10 @@
     (define-key menu-key-map (kbd "9") 'org-edit-src-exit)
     (define-key menu-key-map (kbd "[") 'winner-undo)
     (define-key menu-key-map (kbd "]") 'winner-redo)
-    (define-key menu-key-map (kbd "m") 'counsel-bookmark)
+    (define-key menu-key-map (kbd "m") 'consult-bookmark)
     (define-key menu-key-map (kbd "s") 'flyspell-auto-correct-word)
     (define-key menu-key-map (kbd "j") 'avy-goto-char-timer)
-    (define-key menu-key-map (kbd "<menu>") 'counsel-M-x)
+    (define-key menu-key-map (kbd "<menu>") 'execute-extended-command)
     (define-key menu-key-map (kbd "SPC") 'magit)
     (define-key menu-key-map (kbd "p") 'projectile-command-map)
     (global-set-key (kbd "<menu>") 'menu-key-map)
