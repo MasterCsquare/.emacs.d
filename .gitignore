@@ -2,5 +2,6 @@
 !.gitignore
 !init.el
 !emacs-init.org
+!README.org
 !doom-ayu-dark-theme.el
 !banner.org
