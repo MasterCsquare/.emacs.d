@@ -32,8 +32,8 @@
     (setq inhibit-startup-screen t)
   #+end_src
 
-  If not config this, you will get origin emacs scrolling, which is
-  scroll by once time per 50 lines.
+  If not config this, you will get native emacs scrolling, which
+  scrolls per 50 lines.
   #+begin_src emacs-lisp
     (setq scroll-margin 0
 	  scroll-conservatively 100000
@@ -46,7 +46,7 @@
   #+end_src
 
   Turnoff backup and auto save, which is useless after VC take over
-  the job.
+  the jobs.
   #+begin_src emacs-lisp
     (setq make-backup-files nil)
     (setq auto-save-default nil)
@@ -99,6 +99,12 @@
   #+begin_src emacs-lisp
     (add-hook 'java-mode-hook 'subword-mode)
     (add-hook 'go-mode-hook 'subword-mode)
+  #+end_src
+
+  Require final newline when save.
+
+  #+begin_src emacs-lisp
+    (setq require-final-newline t)
   #+end_src
 
   Answer the exit question by one letter.
@@ -155,6 +161,16 @@
     (setq use-package-always-ensure t)
   #+end_src
 * user interface
+  A modern emacs always have a completion framework. There are many
+  choices of these, such as ido, ivy, helm. Ido is include in emacs as
+  default, but it's not great enough to compare with helm and
+  ivy. Helm used to be a great framework, but it's not maintain
+  anymore. Ivy is another popular choice, but it's grow from a
+  text-based search tool called swiper, which means ivy is a framework
+  grows from specific to general and these makes it messy.
+
+  Selectrum, which is mature enough as a replacement of ivy, is made
+  as a general framework at first. So selectrum is my final choice.
   #+begin_src emacs-lisp
     (use-package selectrum
       :config
@@ -186,7 +202,11 @@
     (use-package marginalia
       :init
       (marginalia-mode))
+  #+end_src
 
+  Doom themes provide a lot of popular themes. Ayu-dark is implemented
+  by myself based of doom-themes.
+  #+begin_src emacs-lisp
     (use-package doom-themes
       :config
       (load-theme 'doom-ayu-dark t)
@@ -194,163 +214,293 @@
 
     (use-package doom-modeline
       :init (doom-modeline-mode 1))
+  #+end_src
 
+  Helpful provide more information than the native one.
+  #+begin_src emacs-lisp
     (use-package helpful
       :bind (("C-h f" . helpful-callable)
 	     ("C-h v" . helpful-variable)
 	     ("C-h k" . helpful-key)))
+  #+end_src
 
+  Which key popups hints for keys and commands after invoke a key
+  prefix.
+  #+begin_src emacs-lisp
     (use-package which-key
       :config (which-key-mode))
+  #+end_src
 
+  The things you see after emacs boot.
+  #+begin_src emacs-lisp
     (use-package dashboard
       :config
       (setq dashboard-startup-banner (expand-file-name "banner.png" user-emacs-directory))
       (dashboard-setup-startup-hook))
+  #+end_src
 
+  Rainbow mode can make you see the color of a rgb markup string. It's
+  useful when you adjust the color theme.
+  #+begin_src emacs-lisp
     (use-package rainbow-mode :commands rainbow-mode)
+  #+end_src
 
+  The native emacs undo modal is linear. Undo tree now is almost the
+  official replacement. =C-x u= shows you the visualize undo tree.
+  #+begin_src emacs-lisp
     (use-package undo-tree
       :config (global-undo-tree-mode)
       :bind ("M-/" . undo-tree-redo))
+  #+end_src
 
+  Diff hl highlights the diffs under the VC.
+  #+begin_src emacs-lisp
     (use-package diff-hl
       :config (global-diff-hl-mode))
+  #+end_src
 
+  Eyebrowse is similar to the X11 workspace.
+  #+begin_src emacs-lisp
     (use-package eyebrowse
       :config (eyebrowse-mode t))
+  #+end_src
 
+  Highlight the volatile objects.
+  #+begin_src emacs-lisp
     (use-package volatile-highlights
       :config (volatile-highlights-mode t))
+  #+end_src
 
+  Customize the headings signs of org mode.
+  #+begin_src emacs-lisp
     (use-package org-bullets
       :config (setq org-bullets-bullet-list '("λ" "μ" "ν" "ξ" ))
       :hook (org-mode . (lambda () (org-bullets-mode 1))))
+  #+end_src
 
+  Dired+ provides plenty of extensions of dired mode. Dired is a great
+  file manager. When combine with editing based on buffer, dired is
+  like a magic tool.
+  #+begin_src emacs-lisp
     (use-package dired+
       :init
       (setq diredp-hide-details-initially-flag nil)
       :config
       (setq dired-listing-switches "-alh"))
+  #+end_src
 
+  Many people think info is a gnu version man pages, but exactly they
+  are totally different. The unix man pages is single page about a
+  command, but info is a fully documentation about a software. Info+
+  makes info pages colorful.
+  #+begin_src emacs-lisp
     (use-package info+)
   #+end_src
 * key bindings
+  Hydra can group commands, also provide a helpful interface.
   #+begin_src emacs-lisp
     (use-package hydra)
+  #+end_src
 
+  God mode likes sticky keys.
+  #+begin_src emacs-lisp
     (use-package god-mode :bind ("<escape>" . god-loccal-mode))
   #+end_src
 * visual
+  Pangu spacing add spaces between English and CJK characters.
   #+begin_src emacs-lisp
     (use-package pangu-spacing
       :hook  (org-mode . pangu-spacing-mode))
+  #+end_src
 
+  Hide the namespace of elisp codes.
+  #+begin_src emacs-lisp
     (use-package nameless
       :commands nameless-mode)
   #+end_src
 * navigation
+  Jump to windows faster. Also can swap windows.
   #+begin_src emacs-lisp
     (use-package ace-window :commands ace-window)
+  #+end_src
 
+  Jump to any positions of the text viewing.
+  #+begin_src emacs-lisp
     (use-package avy :commands avy-goto-char-timer)
+  #+end_src
 
+  Jump to links faster.
+  #+begin_src emacs-lisp
     (use-package ace-link :config (ace-link-setup-default))
+  #+end_src
 
+  Preview when =goto-line=.
+  #+begin_src emacs-lisp
     (use-package goto-line-preview
       :config
       (global-set-key [remap goto-line] 'goto-line-preview))
   #+end_src
 * editing
+  Add multiple cursors and edit things at the same time.
   #+begin_src emacs-lisp
     (use-package multiple-cursors
       :bind (("C->" . mc/mark-next-like-this)
 	     ("C-<" . mc/mark-previous-like-this)))
+  #+end_src
 
+  Select text increasingly based on syntax blocks.
+  #+begin_src emacs-lisp
     (use-package expand-region
       :bind ("C-=" . er/expand-region))
+  #+end_src
 
+  Move current line up or down.
+  #+begin_src emacs-lisp
     (use-package move-text
       :bind
       (("M-p" . move-text-up)
        ("M-n" . move-text-down)))
+  #+end_src
 
+  A writable grep buffer.
+  #+begin_src emacs-lisp
     (use-package wgrep :defer t)
   #+end_src
 * programming
+  Project Managements. The projects are auto recognized.
   #+begin_src emacs-lisp
     (use-package projectile
       :config
       (projectile-mode +1)
       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  #+end_src
 
+  Highlight the todo keywords.
+  #+begin_src emacs-lisp
     (use-package hl-todo :hook (prog-mode . hl-todo-mode))
+  #+end_src
 
+  Code completions.
+  #+begin_src emacs-lisp
     (use-package company
       :config
       (add-hook 'after-init-hook 'global-company-mode)
       (setq company-idle-delay 0)
       (setq company-minimum-prefix-length 1))
+  #+end_src
 
+  A snippets system.
+  #+begin_src emacs-lisp
     (use-package yasnippet
       :hook
       (after-init . yas-global-mode))
 
     (use-package yasnippet-snippets
       :after yasnippet)
+  #+end_src
 
+  Create snippet on the fly.
+  #+begin_src emacs-lisp
     (use-package auto-yasnippet
       :bind (("C-c [" . aya-create)
 	     ("C-c ]" . aya-expand)))
+  #+end_src
 
+  A lsp client. The language server protocol can provide many IDE
+  features by a language server, which makes emacs more powerful.
+  #+begin_src emacs-lisp
     (use-package eglot :commands eglot)
+  #+end_src
 
+  On the fly syntax check.
+  #+begin_src emacs-lisp
     (use-package flycheck
       :hook (after-init . global-flycheck-mode))
+  #+end_src
 
+  Show different color of delimiters based on nested depth.
+  #+begin_src emacs-lisp
     (use-package rainbow-delimiters
       :hook (prog-mode . rainbow-delimiters-mode))
+  #+end_src
 
+  A face for highlight numbers.
+  #+begin_src emacs-lisp
     (use-package highlight-numbers
       :hook (prog-mode . highlight-numbers-mode))
+  #+end_src
 
+  Lispy is one of the Parenthesis edit plugins family, such as
+  pareidt, smartparens. Works on parenthesis makes it totally
+  different and more convenient.
+  #+begin_src emacs-lisp
     (use-package lispy
       :hook
       (emacs-lisp-mode . lispy-mode)
       (lisp-mode . lispy-mode))
+  #+end_src
 
+  A front end of git. Magit is magic.
+  #+begin_src emacs-lisp
     (use-package magit
       :bind ("C-x g" . magit))
 
     (use-package forge
       :after magit)
+  #+end_src
 
+  Go to any git commits on the fly.
+  #+begin_src emacs-lisp
     (use-package git-timemachine
       :commands git-timemachine)
+  #+end_src
 
+  Show messages about a commit on the fly.
+  #+begin_src emacs-lisp
     (use-package git-messenger
       :commands git-messenger:popup-message)
+  #+end_src
 
+  Modes for git related files.
+  #+begin_src emacs-lisp
     (use-package gitconfig-mode)
 
     (use-package gitattributes-mode)
 
     (use-package gitignore-mode)
+  #+end_src
 
+  A common lisp IDE.
+  #+begin_src emacs-lisp
     (use-package sly :commands sly
       :config (setq inferior-lisp-program "/usr/bin/sbcl"))
+  #+end_src
 
+  A scheme IDE.
+  #+begin_src emacs-lisp
     (use-package geiser :commands geiser)
+  #+end_src
 
+  A mode for web development.
+  #+begin_src emacs-lisp
     (use-package web-mode :mode "\\.html\\'")
+  #+end_src
 
+  Emmet for web.
+  #+begin_src emacs-lisp
     (use-package emmet-mode :hook (web-mode . emmet-mode))
+  #+end_src
 
+  See the changes of web on the fly.
+  #+begin_src emacs-lisp
     (use-package skewer-mode :commands run-skewer
       :hook ((js2-mode . skewer-mode)
 	     (css-mode . skewer-css-mode )
 	     (html-mode . skewer-html-mode)))
+  #+end_src
 
+  Modes for languages.
+  #+begin_src emacs-lisp
     (use-package haskell-mode :mode "\\.hs\\'")
 
     (use-package go-mode :mode "\\.go\\'")
@@ -366,36 +516,61 @@
     (use-package markdown-mode :mode "\\.md\\'")
   #+end_src
 * operating system
+  A mpd client.
   #+begin_src emacs-lisp
     (use-package mingus :commands mingus)
+  #+end_src
 
+  Input method based on rime.
+  #+begin_src emacs-lisp
     (use-package rime
       :custom
       (default-input-method "rime"))
+  #+end_src
 
+  Fish-like auto suggestions for eshell.
+  #+begin_src emacs-lisp
     (use-package esh-autosuggest
       :hook (eshell-mode . esh-autosuggest-mode))
+  #+end_src
 
+  Restart emacs.
+  #+begin_src emacs-lisp
     (use-package restart-emacs
       :commands restart-emacs)
+  #+end_src
 
+  Google somethings.
+  #+begin_src emacs-lisp
     (use-package google-this
       :config
       (google-this-mode 1))
+  #+end_src
 
+  A more powerful tools to view pdf.
+  #+begin_src emacs-lisp
     (use-package pdf-tools
       :config
       (pdf-tools-install))
+  #+end_src
 
+  Latex editing.
+  #+begin_src emacs-lisp
     (use-package tex
       :defer t
       :ensure auctex
       :config
       (setq TeX-auto-save t))
+  #+end_src
 
+  A boot profile tool.
+  #+begin_src emacs-lisp
     (use-package esup
       :commands esup)
+  #+end_src
 
+  Calendar for chinese.
+  #+begin_src emacs-lisp
     (use-package cal-china-x
       :config
       (setq mark-holidays-in-calendar t)
@@ -405,12 +580,16 @@
 	    (append cal-china-x-important-holidays
 		    cal-china-x-general-holidays
 		    holiday-other-holidays)))
+  #+end_src
 
+  View epub files.
+  #+begin_src emacs-lisp
     (use-package nov-mode
       :ensure nov
       :mode "\\.epub\\'")
   #+end_src
 * org mode
+  Insert toc in org-mode.
   #+begin_src emacs-lisp
     (use-package toc-org
       :config
