@@ -182,13 +182,10 @@
       (selectrum-prescient-mode +1)
       (prescient-persist-mode +1))
 
-    (use-package ctrlf
-      :config
-      (ctrlf-mode +1))
-
     (use-package consult
       :bind
-      (("C-c o" . consult-outline)
+      (("C-s" . consult-line)
+       ("C-c o" . consult-outline)
        ("C-x b" . consult-buffer)
        ("C-x 4 b" . consult-buffer-other-window)
        ("C-x 5 b" . consult-buffer-other-frame)
