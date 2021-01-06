@@ -492,7 +492,7 @@
   #+begin_src emacs-lisp
     (use-package skewer-mode :commands run-skewer
       :hook ((js2-mode . skewer-mode)
-	     (css-mode . skewer-css-mode )
+	     (css-mode . skewer-css-mode)
 	     (html-mode . skewer-html-mode)))
   #+end_src
 
