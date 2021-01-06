@@ -500,7 +500,8 @@
   #+begin_src emacs-lisp
     (use-package haskell-mode :mode "\\.hs\\'")
 
-    (use-package go-mode :mode "\\.go\\'")
+    (use-package go-mode :mode "\\.go\\'"
+      :hook (before-save . gofmt-before-save))
 
     (use-package rust-mode :mode "\\.rs\\'")
 
