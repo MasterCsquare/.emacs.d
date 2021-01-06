@@ -406,7 +406,11 @@
   A lsp client. The language server protocol can provide many IDE
   features by a language server, which makes emacs more powerful.
   #+begin_src emacs-lisp
-    (use-package eglot :commands eglot)
+    (use-package eglot :commands eglot
+      :config
+      (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+      :hook
+      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode) . eglot-ensure))
   #+end_src
 
   On the fly syntax check.
