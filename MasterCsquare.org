@@ -194,8 +194,6 @@
        ("M-y" . consult-yank-pop)
        ("<help> a" . consult-apropos)))
 
-    (use-package consult-selectrum)
-
     (use-package marginalia
       :init
       (marginalia-mode))
