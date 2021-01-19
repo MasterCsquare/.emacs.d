@@ -190,6 +190,9 @@ determine the exact padding."
    ;; helm
    (helm-selection :foreground bg :background blue)
    (helm-ff-file-extension :foreground magenta)
+
+   ;; selectrum
+   (selectrum-current-candidate :background base3)
    )
 
   ;; --- extra variables ---------------------
