@@ -276,12 +276,24 @@
   Dired+ provides plenty of extensions of dired mode. Dired is a great
   file manager. When combine with editing based on buffer, dired is
   like a magic tool.
+
+  Dired-sort can sort the dired buffer.
   #+begin_src emacs-lisp
     (use-package dired+
       :init
       (setq diredp-hide-details-initially-flag nil)
       :config
       (setq dired-listing-switches "-alh"))
+
+    (use-package dired-sort
+      :bind
+      (:map dired-mode-map
+	    (", s" . dired-sort-size)
+	    (", t" . dired-sort-time)
+	    (", n" . dired-sort-name)
+	    (", c" . dired-sort-ctime)
+	    (", u" . dired-sort-utime)
+	    (", e" . dired-sort-extension)))
   #+end_src
 
   Many people think info is a gnu version man pages, but exactly they
