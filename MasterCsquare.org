@@ -601,6 +601,11 @@
       :mode "\\.epub\\'")
   #+end_src
 * org mode
+  Open pdf file with emacs after export from org-mode.
+  #+begin_src emacs-lisp
+    (add-to-list 'org-file-apps '("\\.pdf\\'" . emacs))
+  #+end_src
+
   Insert toc in org-mode.
   #+begin_src emacs-lisp
     (use-package toc-org
