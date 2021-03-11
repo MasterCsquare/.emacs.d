@@ -625,6 +625,7 @@
     (define-key menu-key-map (kbd ";") 'save-buffer)
     (define-key menu-key-map (kbd "k") 'kill-buffer)
     (define-key menu-key-map (kbd "b") 'mark-whole-buffer)
+    (define-key menu-key-map (kbd "g") 'revert-buffer)
     (define-key menu-key-map (kbd "w") 'ace-window)
     (define-key menu-key-map (kbd "i") 'ace-swap-window)
     (define-key menu-key-map (kbd "e") 'find-file)
