@@ -197,6 +197,20 @@
     (use-package marginalia
       :init
       (marginalia-mode))
+
+    (use-package embark
+      :bind
+      ("C-S-a" . embark-act))
+
+    (use-package embark-consult
+      :hook
+      (embark-collect-mode . embark-consult-preview-minor-mode))
+
+    (use-package orderless
+      :config
+      (setq completion-styles '(orderless))
+      (setq selectrum-refine-candidates-function #'orderless-filter)
+      (setq selectrum-highlight-candidates-function #'orderless-highlight-matches))
   #+end_src
 
   Doom themes provide a lot of popular themes. Ayu-dark is implemented
