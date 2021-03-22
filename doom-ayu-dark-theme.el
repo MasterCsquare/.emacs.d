@@ -193,6 +193,13 @@ determine the exact padding."
 
    ;; selectrum
    (selectrum-current-candidate :background base3)
+
+   ;; orderless
+   (orderless-match-face-0 :foreground blue :weight 'bold)
+   (orderless-match-face-1 :foreground red :weight 'bold)
+   (orderless-match-face-2 :foreground green :weight 'bold)
+   (orderless-match-face-3 :foreground teal :weight 'bold)
+
    )
 
   ;; --- extra variables ---------------------
