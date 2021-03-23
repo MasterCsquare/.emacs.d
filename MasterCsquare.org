@@ -138,7 +138,7 @@
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font (frame-parameter nil 'font)
 			charset
-			(font-spec :family "WenQuanYi Zen Hei" :size 18)))
+			(font-spec :family "WenQuanYi Zen Hei" :size 14)))
   #+end_src
 
   Enable package manager and install use-package.
@@ -626,6 +626,13 @@
       :config
       (if (require 'toc-org nil t)
 	(add-hook 'org-mode-hook 'toc-org-mode)))
+  #+end_src
+
+  Visual alignment for Org Mode, Markdown and table.el tables.
+  #+begin_src emacs-lisp
+    (use-package valign
+      :hook
+      (org-mode . valign-mode))
   #+end_src
 * menu keys
   The menu key is very useful. I bind it with so many commands, which
