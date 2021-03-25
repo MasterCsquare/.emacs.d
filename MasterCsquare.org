@@ -99,6 +99,7 @@
   #+begin_src emacs-lisp
     (add-hook 'java-mode-hook 'subword-mode)
     (add-hook 'go-mode-hook 'subword-mode)
+    (add-hook 'haskell-mode-hook 'subword-mode)
   #+end_src
 
   Require final newline when save.
@@ -434,7 +435,7 @@
       :config
       (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
       :hook
-      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode) . eglot-ensure))
+      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode) . eglot-ensure))
   #+end_src
 
   On the fly syntax check.
