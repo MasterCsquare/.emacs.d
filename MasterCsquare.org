@@ -463,7 +463,8 @@
     (use-package lispy
       :hook
       (emacs-lisp-mode . lispy-mode)
-      (lisp-mode . lispy-mode))
+      (lisp-mode . lispy-mode)
+      (scheme-mode . lispy-mode))
   #+end_src
 
   A front end of git. Magit is magic.
