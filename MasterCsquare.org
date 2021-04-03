@@ -659,6 +659,7 @@
     (define-key menu-key-map (kbd "[") 'winner-undo)
     (define-key menu-key-map (kbd "]") 'winner-redo)
     (define-key menu-key-map (kbd "m") 'consult-bookmark)
+    (define-key menu-key-map (kbd "i") 'consult-imenu)
     (define-key menu-key-map (kbd "s") 'flyspell-correct-at-point)
     (define-key menu-key-map (kbd "j") 'avy-goto-char-timer)
     (define-key menu-key-map (kbd "a") 'consult-ripgrep)
