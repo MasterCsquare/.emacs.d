@@ -572,13 +572,6 @@
       (google-this-mode 1))
   #+end_src
 
-  A more powerful tools to view pdf.
-  #+begin_src emacs-lisp
-    (use-package pdf-tools
-      :config
-      (pdf-tools-install))
-  #+end_src
-
   Latex editing.
   #+begin_src emacs-lisp
     (use-package tex
