@@ -9,6 +9,7 @@
 - [[#operating-system][operating system]]
 - [[#org-mode][org mode]]
 - [[#menu-keys][menu keys]]
+- [[#telega][telega]]
 
 * basic configuration
   A bigger garbage collect threshold can make emacs boot faster,
@@ -660,4 +661,15 @@
     (define-key menu-key-map (kbd "SPC") 'magit)
     (define-key menu-key-map (kbd "p") 'projectile-command-map)
     (global-set-key (kbd "<menu>") 'menu-key-map)
+  #+end_src
+* telega
+  A telegram client based on tdlib.
+  #+begin_src emacs-lisp
+    (use-package telega
+      :commands telega
+      :config
+      (setq telega-proxies
+	  (list
+	   '(:server "127.0.0.1" :port 1080 :enable t
+		     :type (:@type "proxyTypeSocks5")))))
   #+end_src
