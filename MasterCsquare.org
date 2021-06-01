@@ -104,11 +104,14 @@
   #+end_src
 
   Require final newline when save.
-
   #+begin_src emacs-lisp
     (setq require-final-newline t)
   #+end_src
 
+  Set c as linux style.
+  #+begin_src emacs-lisp
+    (setq c-basic-offset 8)
+  #+end_src
   Answer the exit question by one letter.
   #+begin_src emacs-lisp
     (fset 'yes-or-no-p 'y-or-n-p)
