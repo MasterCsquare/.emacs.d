@@ -77,7 +77,7 @@ determine the exact padding."
    (variables      fg)
    (numbers        dark-cyan)
    (region         base3)
-   (error          "#ff3333")
+   (error          '("#ff3333"))
    (warning        yellow)
    (success        green)
    (vc-modified    "#6994bf")
