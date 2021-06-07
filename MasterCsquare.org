@@ -507,6 +507,7 @@
   A scheme IDE.
   #+begin_src emacs-lisp
     (use-package geiser :commands geiser)
+    (use-package geiser-chez :commands run-chez)
   #+end_src
 
   A mode for web development.
