@@ -148,11 +148,7 @@
 
   Enable package manager and install use-package.
   #+begin_src emacs-lisp
-    (setq package-archives
-	  '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-	    ("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-	    ("emacswiki" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/emacswiki/")))
-
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
     (package-initialize)
 
     (unless package-archive-contents
