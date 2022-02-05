@@ -142,7 +142,7 @@
       (winner-mode 1))
   #+end_src
 
-  Set the default font to Fira, default CJK font to Wenquanyi Zen hei.
+  Set the default font to inconsolata, default CJK font to Wenquanyi Zen hei.
   #+begin_src emacs-lisp
     (set-face-attribute 'default nil :font "inconsolata 13")
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
