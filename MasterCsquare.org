@@ -556,7 +556,8 @@
   #+begin_src emacs-lisp
     (use-package rime
       :custom
-      (default-input-method "rime"))
+      (default-input-method "rime")
+      (rime-show-candidate 'posframe))
   #+end_src
 
   Fish-like auto suggestions for eshell.
