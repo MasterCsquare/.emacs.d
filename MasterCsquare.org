@@ -328,7 +328,7 @@
 
   God mode likes sticky keys.
   #+begin_src emacs-lisp
-    (use-package god-mode :bind ("<escape>" . god-loccal-mode))
+    (use-package god-mode :bind ("<escape>" . god-local-mode))
   #+end_src
 * visual
   Pangu spacing add spaces between English and CJK characters.
