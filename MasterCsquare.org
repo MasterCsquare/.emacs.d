@@ -217,7 +217,7 @@
   #+end_src
 
   Doom themes provide a lot of popular themes. Ayu-dark is implemented
-  by myself based of doom-themes.
+  by myself based on doom-themes.
   #+begin_src emacs-lisp
     (use-package doom-themes
       :config
