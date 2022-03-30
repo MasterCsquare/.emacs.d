@@ -1,35 +1,35 @@
-;;; doom-ayu-dark-theme.el -*- no-byte-compile: t; -*-
+;;; doom-ayu-darkp-theme.el -*- no-byte-compile: t; -*-
 (require 'doom-themes)
 
 ;;
-(defgroup doom-ayu-dark-theme nil
+(defgroup doom-ayu-darkp-theme nil
   "Options for doom-themes"
   :group 'doom-themes)
 
-(defcustom doom-ayu-dark-brighter-modeline nil
+(defcustom doom-ayu-darkp-brighter-modeline nil
   "If non-nil, more vivid colors will be used to style the mode-line."
-  :group 'doom-ayu-dark-theme
+  :group 'doom-ayu-darkp-theme
   :type 'boolean)
 
-(defcustom doom-ayu-dark-brighter-comments nil
+(defcustom doom-ayu-darkp-brighter-comments nil
   "If non-nil, comments will be highlighted in more vivid colors."
-  :group 'doom-ayu-dark-theme
+  :group 'doom-ayu-darkp-theme
   :type 'boolean)
 
-(defcustom doom-ayu-dark-comment-bg doom-ayu-dark-brighter-comments
+(defcustom doom-ayu-darkp-comment-bg doom-ayu-darkp-brighter-comments
   "If non-nil, comments will have a subtle, darker background. Enhancing their
 legibility."
-  :group 'doom-ayu-dark-theme
+  :group 'doom-ayu-darkp-theme
   :type 'boolean)
 
-(defcustom doom-ayu-dark-padded-modeline doom-themes-padded-modeline
+(defcustom doom-ayu-darkp-padded-modeline doom-themes-padded-modeline
   "If non-nil, adds a 4px padding to the mode-line. Can be an integer to
 determine the exact padding."
-  :group 'doom-ayu-dark-theme
+  :group 'doom-ayu-darkp-theme
   :type '(choice integer boolean))
 
 ;;
-(def-doom-theme doom-ayu-dark
+(def-doom-theme doom-ayu-darkp
   "A dark theme in ayu"
 
   ;; name        default   256       16
@@ -65,8 +65,8 @@ determine the exact padding."
    (vertical-bar   (doom-darken base1 0.5))
    (selection      dark-blue)
    (builtin        blue)
-   (comments       (if doom-ayu-dark-brighter-comments dark-cyan grey))
-   (doc-comments   (doom-lighten (if doom-ayu-dark-brighter-comments dark-cyan grey) 0.25))
+   (comments       (if doom-ayu-darkp-brighter-comments dark-cyan grey))
+   (doc-comments   (doom-lighten (if doom-ayu-darkp-brighter-comments dark-cyan grey) 0.25))
    (constants      yellow)
    (functions      orange)
    (keywords       magenta)
@@ -86,10 +86,10 @@ determine the exact padding."
 
    ;; custom categories
    (hidden     `(,(car bg) "black" "black"))
-   (-modeline-bright doom-ayu-dark-brighter-modeline)
+   (-modeline-bright doom-ayu-darkp-brighter-modeline)
    (-modeline-pad
-    (when doom-ayu-dark-padded-modeline
-      (if (integerp doom-ayu-dark-padded-modeline) doom-ayu-dark-padded-modeline 4)))
+    (when doom-ayu-darkp-padded-modeline
+      (if (integerp doom-ayu-darkp-padded-modeline) doom-ayu-darkp-padded-modeline 4)))
 
    (modeline-fg     nil)
    (modeline-fg-alt base5)
@@ -114,7 +114,7 @@ determine the exact padding."
 
    (font-lock-comment-face
     :foreground comments
-    :background (if doom-ayu-dark-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-ayu-darkp-comment-bg (doom-lighten bg 0.05)))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
@@ -206,4 +206,4 @@ determine the exact padding."
   ()
   )
 
-;;; doom-ayu-dark-theme.el ends here
+;;; doom-ayu-darkp-theme.el ends here

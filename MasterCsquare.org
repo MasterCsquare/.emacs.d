@@ -220,7 +220,7 @@
   #+begin_src emacs-lisp
     (use-package doom-themes
       :config
-      (load-theme 'doom-ayu-dark t)
+      (load-theme 'doom-ayu-darkp t)
       (doom-themes-org-config))
 
     (use-package doom-modeline
