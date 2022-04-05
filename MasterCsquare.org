@@ -152,8 +152,8 @@
 
   Enable package manager and install use-package.
   #+begin_src emacs-lisp
-    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
     (package-initialize)
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
     (unless package-archive-contents
       (package-refresh-contents))
