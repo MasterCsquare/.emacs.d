@@ -1,7 +1,8 @@
 *
 !.gitignore
+!.gitmodules
 !init.el
-!emacs-init.org
+!Mastercsquare.org
 !README.org
 !doom-ayu-darkp-theme.el
 !banner.org
