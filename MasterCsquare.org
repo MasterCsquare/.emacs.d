@@ -491,11 +491,8 @@
 
   Modes for git related files.
   #+begin_src emacs-lisp
-    (use-package gitconfig-mode)
-
-    (use-package gitattributes-mode)
-
-    (use-package gitignore-mode)
+    (use-package git-modes
+      :commands gitconfig-mode gitattributes-mode gitignore-mode)
   #+end_src
 
   A common lisp IDE.
