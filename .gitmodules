@@ -1,0 +1,6 @@
+[submodule "lisp/dired-plus"]
+	path = lisp/dired-plus
+	url = https://github.com/emacsmirror/dired-plus
+[submodule "lisp/info-plus"]
+	path = lisp/info-plus
+	url = https://github.com/emacsmirror/info-plus
