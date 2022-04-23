@@ -648,7 +648,7 @@
     (use-package toc-org
       :config
       (if (require 'toc-org nil t)
-	(add-hook 'org-mode-hook 'toc-org-mode)))
+	  (add-hook 'org-mode-hook 'toc-org-mode)))
   #+end_src
 
   Visual alignment for Org Mode, Markdown and table.el tables.
