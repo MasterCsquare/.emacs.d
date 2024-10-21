@@ -200,6 +200,7 @@ determine the exact padding."
    (orderless-match-face-2 :foreground green :weight 'bold)
    (orderless-match-face-3 :foreground teal :weight 'bold)
 
+   (diredp-flag-mark-line :background red :foreground bg)
    )
 
   ;; --- extra variables ---------------------
