@@ -458,8 +458,9 @@
     (use-package eglot :commands eglot
       :config
       (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+      (add-to-list 'eglot-server-programs '((vue-mode) "vue-language-server" "--stdio"))
       :hook
-      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode) . eglot-ensure))
+      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode vue-mode) . eglot-ensure))
   #+end_src
 
   On the fly syntax check.
@@ -564,6 +565,8 @@
     (use-package json-mode :mode "\\.json\\'")
 
     (use-package markdown-mode :mode "\\.md\\'")
+
+    (use-package vue-mode :mode "\\.vue\\'")
   #+end_src
 * operating system
   A mpd client.
