@@ -687,6 +687,8 @@
 
     (use-package markdown-mode :mode "\\.md\\'")
 
+    (use-package typescript-mode :mode "\\.ts\\'")
+
     (use-package vue-mode :mode "\\.vue\\'"
       :config
       (setq mmm-submode-decoration-level 2)
