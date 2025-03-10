@@ -669,7 +669,9 @@
 
     (use-package markdown-mode :mode "\\.md\\'")
 
-    (use-package vue-mode :mode "\\.vue\\'")
+    (use-package vue-mode :mode "\\.vue\\'"
+      :config
+      (setq mmm-submode-decoration-level 2))
   #+end_src
 * operating system
   A mpd client.
