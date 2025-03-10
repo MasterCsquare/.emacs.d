@@ -671,7 +671,10 @@
 
     (use-package vue-mode :mode "\\.vue\\'"
       :config
-      (setq mmm-submode-decoration-level 2))
+      (setq mmm-submode-decoration-level 2)
+      (add-hook 'mmm-mode-hook
+              (lambda ()
+                (set-face-background 'mmm-default-submode-face nil))))
   #+end_src
 * operating system
   A mpd client.
