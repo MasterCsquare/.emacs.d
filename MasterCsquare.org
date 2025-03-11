@@ -581,7 +581,7 @@
       (add-to-list 'eglot-server-programs
                    `(vue-mode . ("vue-language-server" "--stdio" :initializationOptions ,(vue-eglot-init-options))))
       :hook
-      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode vue-mode) . eglot-ensure))
+      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode vue-mode typescript-mode) . eglot-ensure))
   #+end_src
 
   On the fly syntax check.
