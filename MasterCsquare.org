@@ -581,7 +581,7 @@
       (add-to-list 'eglot-server-programs
                    `(vue-mode . ("vue-language-server" "--stdio" :initializationOptions ,(vue-eglot-init-options))))
       :hook
-      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode vue-mode typescript-mode) . eglot-ensure))
+      ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode vue-mode html-mode css-mode typescript-mode) . eglot-ensure))
   #+end_src
 
   On the fly syntax check.
@@ -650,24 +650,6 @@
   #+begin_src emacs-lisp
     (use-package geiser :commands geiser)
     (use-package geiser-chez :commands run-chez)
-  #+end_src
-
-  A mode for web development.
-  #+begin_src emacs-lisp
-    (use-package web-mode :mode "\\.html\\'")
-  #+end_src
-
-  Emmet for web.
-  #+begin_src emacs-lisp
-    (use-package emmet-mode :hook (web-mode . emmet-mode))
-  #+end_src
-
-  See the changes of web on the fly.
-  #+begin_src emacs-lisp
-    (use-package skewer-mode :commands run-skewer
-      :hook ((js2-mode . skewer-mode)
-	     (css-mode . skewer-css-mode)
-	     (html-mode . skewer-html-mode)))
   #+end_src
 
   Modes for languages.
