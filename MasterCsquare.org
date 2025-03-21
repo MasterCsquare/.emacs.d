@@ -565,7 +565,7 @@
       (defun vue-eglot-init-options ()
                  (let ((tsdk-path (expand-file-name
                                    "lib"
-                                   (shell-command-to-string "npm list --global --parseable typescript | head -n1 | tr -d \"\n\""))))
+                                   (shell-command-to-string "npm list --global --parseable typescript | head -n1"))))
                    `(:typescript (:tsdk ,tsdk-path
                                   :languageFeatures (:completion
                                                      (:defaultTagNameCase "both"
