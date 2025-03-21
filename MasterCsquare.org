@@ -563,25 +563,27 @@
     (use-package eglot :commands eglot
       :config
       (defun vue-eglot-init-options ()
-                 (let ((tsdk-path (expand-file-name
-                                   "lib"
-                                   (shell-command-to-string "npm list --global --parseable typescript | head -n1"))))
-                   `(:typescript (:tsdk ,tsdk-path
-                                  :languageFeatures (:completion
-                                                     (:defaultTagNameCase "both"
-                                                      :defaultAttrNameCase "kebabCase"
-                                                      :getDocumentNameCasesRequest nil
-                                                      :getDocumentSelectionRequest nil)
-                                                     :diagnostics
-                                                     (:getDocumentVersionRequest nil))
-                                  :documentFeatures (:documentFormatting
-                                                     (:defaultPrintWidth 100
-                                                      :getDocumentPrintWidthRequest nil)
-                                                     :documentSymbol t
-                                                     :documentColor t)))))
+        (let ((tsdk-path (expand-file-name
+    		      "lib"
+    		      (string-trim-right (shell-command-to-string "npm list --global --parseable typescript | head -n1")))))
+          `(:typescript (:tsdk ,tsdk-path
+    			   :languageFeatures (:completion
+    					      (:defaultTagNameCase "both"
+    								   :defaultAttrNameCase "kebabCase"
+    								   :getDocumentNameCasesRequest nil
+    								   :getDocumentSelectionRequest nil)
+    					      :diagnostics
+    					      (:getDocumentVersionRequest nil))
+    			   :documentFeatures (:documentFormatting
+    					      (:defaultPrintWidth 100
+    								  :getDocumentPrintWidthRequest nil)
+    					      :documentSymbol t
+    					      :documentColor t))
+    		    :vue (:hybridMode :json-false))))
+
       (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
       (add-to-list 'eglot-server-programs
-                   `(vue-mode . ("vue-language-server" "--stdio" :initializationOptions ,(vue-eglot-init-options))))
+    	       `(vue-mode . ("vue-language-server" "--stdio" :initializationOptions ,(vue-eglot-init-options))))
       :hook
       ((go-mode c-mode c++-mode python-mode rust-mode java-mode js-mode haskell-mode vue-mode html-mode css-mode typescript-mode) . eglot-ensure))
   #+end_src
