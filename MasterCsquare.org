@@ -281,7 +281,9 @@
   official replacement. =C-x u= shows you the visualize undo tree.
   #+begin_src emacs-lisp
     (use-package undo-tree
-      :config (global-undo-tree-mode)
+      :config
+      (global-undo-tree-mode)
+      (setq undo-tree-auto-save-history nil)
       :bind ("M-/" . undo-tree-redo))
   #+end_src
 
