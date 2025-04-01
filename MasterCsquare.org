@@ -112,7 +112,7 @@
   comments and strings.
   #+begin_src emacs-lisp
     (add-hook 'text-mode-hook 'flyspell-mode)
-    (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+    ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
   #+end_src
 
   Subword-mode makes moving actions obey camel case rules.
