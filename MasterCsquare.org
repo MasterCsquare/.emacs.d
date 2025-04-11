@@ -197,11 +197,15 @@
 
   Selectrum, which is mature enough as a replacement of ivy, is made
   as a general framework at first. So selectrum is my final choice.
+
+  After days, selectrum was deprecated by the author, who switched to
+  vertico. That's why it is vertico now.
   #+begin_src emacs-lisp
-    (use-package selectrum
+    (use-package vertico
+      :init
+      (vertico-mode)
       :config
-      (selectrum-mode +1)
-      (setq selectrum-num-candidates-displayed 15))
+      (setq vertico-count 15))
 
     (use-package consult
       :bind
@@ -228,10 +232,10 @@
       (embark-collect-mode . embark-consult-preview-minor-mode))
 
     (use-package orderless
-      :config
-      (setq completion-styles '(orderless))
-      (setq selectrum-refine-candidates-function #'orderless-filter)
-      (setq selectrum-highlight-candidates-function #'orderless-highlight-matches))
+      :ensure t
+      :custom
+      (completion-styles '(orderless basic))
+      (completion-category-overrides '((file (styles basic partial-completion)))))
 
     (use-package flyspell-correct :defer t)
   #+end_src
