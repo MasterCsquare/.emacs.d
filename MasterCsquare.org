@@ -216,8 +216,11 @@
        ("C-x 5 b" . consult-buffer-other-frame)
        ("C-x r x" . consult-register)
        ("C-x r b" . consult-bookmark)
-       ("M-y" . consult-yank-pop)
-       ("<help> a" . consult-apropos)))
+       ("M-y" . consult-yank-pop))
+
+      :config
+      (setq xref-show-xrefs-function #'consult-xref
+            xref-show-definitions-function #'consult-xref))
 
     (use-package marginalia
       :init
