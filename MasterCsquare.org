@@ -297,7 +297,9 @@
   Diff hl highlights the diffs under the VC.
   #+begin_src emacs-lisp
     (use-package diff-hl
-      :config (global-diff-hl-mode))
+      :config
+      (global-diff-hl-mode)
+      (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
   #+end_src
 
   Eyebrowse is similar to the X11 workspace.
