@@ -788,7 +788,8 @@
   #+begin_src emacs-lisp
     (use-package org-modern
       :config
-      (global-org-modern-mode))
+      (add-hook 'org-mode-hook #'org-modern-mode)
+      (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
   #+end_src
 * menu keys
   The menu key is very useful. I bind it with so many commands, which
