@@ -783,6 +783,13 @@
       :hook
       (org-mode . valign-mode))
   #+end_src
+
+  A modern style for org mode.
+  #+begin_src emacs-lisp
+    (use-package org-modern
+      :config
+      (global-org-modern-mode))
+  #+end_src
 * menu keys
   The menu key is very useful. I bind it with so many commands, which
   are very frequently used.
