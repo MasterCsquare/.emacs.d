@@ -108,11 +108,24 @@
     (add-hook 'before-save-hook 'delete-trailing-whitespace)
   #+end_src
 
-  On the fly spell checking. the flyspell-prog-mode only check
-  comments and strings.
+  On the fly spell checking.
   #+begin_src emacs-lisp
-    (add-hook 'text-mode-hook 'flyspell-mode)
-    ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+    (use-package jinx
+      :config
+      (dolist (hook '(text-mode-hook prog-mode-hook conf-mode-hook))
+        (add-hook hook #'jinx-mode))
+      (let ((st jinx--base-syntax-table))
+      (modify-syntax-entry '(#x4E00 . #x9FFF) "_" st)   ; CJK Unified Ideographs
+      (modify-syntax-entry '(#x3400 . #x4DBF) "_" st)   ; CJK Unified Ideographs Extension A
+      (modify-syntax-entry '(#x20000 . #x2A6DF) "_" st) ; CJK Unified Ideographs Extension B
+      (modify-syntax-entry '(#x2A700 . #x2B73F) "_" st) ; CJK Unified Ideographs Extension C
+      (modify-syntax-entry '(#x2B740 . #x2B81F) "_" st) ; CJK Unified Ideographs Extension D
+      (modify-syntax-entry '(#x2B820 . #x2CEAF) "_" st) ; CJK Unified Ideographs Extension E
+      (modify-syntax-entry '(#x2CEB0 . #x2EBEF) "_" st) ; CJK Unified Ideographs Extension F
+      (modify-syntax-entry '(#x30000 . #x3134F) "_" st) ; CJK Unified Ideographs Extension G
+      (modify-syntax-entry '(#x31350 . #x323AF) "_" st) ; CJK Unified Ideographs Extension H
+      (modify-syntax-entry '(#x2EBF0 . #x2EE5F) "_" st) ; CJK Unified Ideographs Extension I
+      ))
   #+end_src
 
   Subword-mode makes moving actions obey camel case rules.
@@ -239,8 +252,6 @@
       :custom
       (completion-styles '(orderless basic))
       (completion-category-overrides '((file (styles basic partial-completion)))))
-
-    (use-package flyspell-correct :defer t)
   #+end_src
 
   Doom themes provide a lot of popular themes. Ayu-dark is implemented
@@ -820,7 +831,7 @@
     (define-key menu-key-map (kbd "]") 'winner-redo)
     (define-key menu-key-map (kbd "m") 'consult-bookmark)
     (define-key menu-key-map (kbd "i") 'consult-imenu)
-    (define-key menu-key-map (kbd "s") 'flyspell-correct-at-point)
+    (define-key menu-key-map (kbd "s") 'jinx-correct)
     (define-key menu-key-map (kbd "j") 'avy-goto-char-timer)
     (define-key menu-key-map (kbd "a") 'consult-ripgrep)
     (define-key menu-key-map (kbd "<menu>") 'execute-extended-command)
