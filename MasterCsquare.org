@@ -114,7 +114,7 @@
       :config
       (dolist (hook '(text-mode-hook prog-mode-hook conf-mode-hook))
         (add-hook hook #'jinx-mode))
-      (let ((st jinx--base-syntax-table))
+      (let ((st jinx--syntax-table))
       (modify-syntax-entry '(#x4E00 . #x9FFF) "_" st)   ; CJK Unified Ideographs
       (modify-syntax-entry '(#x3400 . #x4DBF) "_" st)   ; CJK Unified Ideographs Extension A
       (modify-syntax-entry '(#x20000 . #x2A6DF) "_" st) ; CJK Unified Ideographs Extension B
@@ -126,6 +126,7 @@
       (modify-syntax-entry '(#x31350 . #x323AF) "_" st) ; CJK Unified Ideographs Extension H
       (modify-syntax-entry '(#x2EBF0 . #x2EE5F) "_" st) ; CJK Unified Ideographs Extension I
       ))
+    (add-to-list 'jinx-camel-modes 'vue-mode)
   #+end_src
 
   Subword-mode makes moving actions obey camel case rules.
